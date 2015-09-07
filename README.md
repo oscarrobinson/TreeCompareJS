@@ -67,42 +67,48 @@ The available settings and their default values are as follows:
 
 ```js
     var settings = {
-        /* Whether a tree is rendered with the lengths of branches taken into account */
+        //whether the tree visualisation takes into account tree branch lengths
         useLengths: true,
-        /* Size of visualisation text  */
+        //size of font on node labels
         fontSize: 14,
-        /* Thickness of lines in visualised tree */
+        //thickness of branch lines
         lineThickness: 3,
-        /* Size of nodes in visualised tree  */
+        //size of tree nodes
         nodeSize: 3,
-        /* Determines tree horizontal spacing  */
+        //multiplier for treeWidth (not width in px)
         treeWidth: 500,
-        /* Determines tree vertical spacing */
+        //multiplier for height of a leaf (not height of whole tree)
         treeHeight: 15,
-        /* Determines whether visualisation of tree moves to best common node when a node in opposing tree is highlighted in compare view */
+        //whether compared tree moves to best corresponding node when node in other tree highlighted
         moveOnClick: true,
-        /* Determines whether zoom sliders are shown on top of the visualisation */
+        //whether zoom slider overlay is enabled
         enableZoomSliders: true,
-        /* Minimum zoom factor  */
+        //minimum zoom level
         scaleMin: 0.05,
-        /* Maximum zoom factor */
+        //maximum zoom level
         scaleMax: 5,
-        /* What happens when a node is clicked  */
-        //OPTIONS: reroot, highlight, collapse
-        clickAction: "reroot",
-        /* Colour of the rendered scale  */
+        //color of the text for the length scale
         scaleColor: "black",
-        /* Code to execute while a visualisation is being loaded */
+        //function to call when a long operation is occuring
         loadingCallback: function() {},
-        /* Code to execute once a visualisation has loaded  */
+        //function to call when a long operation is complete
         loadedCallback: function() {},
-        /* Text on internal nodes  */
-        //OPTIONS: none, name, length, similarity
-        internalLabels: "none",
-        /* Whether SVG download buttons are rendered on the visualisation  */
+        //text for internal nodes
+        internalLabels: "none", //none, name, length, similarity
+        //whether the link to download the tree as an SVG is shown
         enableDownloadButtons: true,
-        /* Whether fisheye zoom on mouseover is enabled  */
-        enableFisheyeZoom: false
+        //whether zoom on mouseover is enabled
+        enableFisheyeZoom: false,
+        //zoom mode for scaling the visualisation
+        zoomMode: "traditional", //semantic, traditional
+        //whether the tree is scaled to fit in the render space on initial render
+        fitTree: "scale", //none, scale
+        //whether size control overlay is enabled
+        enableSizeControls: true,
+        //whether search overlay is enabled
+        enableSearch: true,
+        //depth to which nodes are automatically collapsed e.g 3 collapses all nodes deeper than depth 3
+        autoCollapse: null // 0,1,2,3... etc
     }
 ```
 
