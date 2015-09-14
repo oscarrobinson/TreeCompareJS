@@ -1789,7 +1789,9 @@ TreeCompare = (function() {
             var children = getChildren(d);
             if (children.length > 0) {
                 if (counter > 0) {
-                    deepLeafList.push(_.map(d.leaves, namesOnly));
+                    deepLeafList.push(_.sortBy(_.map(d.leaves, namesOnly), function(str) {
+                        return str
+                    }).toString());
                 }
                 counter += 1;
                 for (var i = 0; i < children.length; i++) {
@@ -1810,33 +1812,11 @@ TreeCompare = (function() {
         get the comparison score between two nodes
     */
     function getElementS(v, n) {
-        var intersect = 0;
         var lv = v.deepLeafList;
         var ln = n.deepLeafList;
         var lvlen = lv.length;
         var lnlen = ln.length;
-        for (var i = 0; i < lvlen; i++) {
-            for (var j = 0; j < lnlen; j++) {
-                if (Array.isArray(lv[i]) && Array.isArray(ln[j])) {
-                    if (lv[i].length === ln[j].length) {
-                        var allEqual = true;
-                        for (var k = 0; k < lv[i].length; k++) {
-                            if (!(lv[i][k] === ln[j][k])) {
-                                allEqual = false;
-                                break;
-                            }
-                        }
-                        if (allEqual) {
-                            intersect += 1;
-                            break;
-                        }
-                    }
-                } else if (!Array.isArray(lv[i]) && !Array.isArray(ln[j]) && (lv[i] === ln[j])) {
-                    intersect += 1;
-                    break;
-                }
-            }
-        }
+        var intersect = _.intersection(lv, ln).length;
         return intersect / (lvlen + lnlen - intersect);
     }
 
